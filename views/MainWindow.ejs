@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/MainWindow.css"media="screen"/>
+		<title>
+			Saboteur
+		</title>
+		<script src="js/MainWindow.js"></script>
+	</head>
+    
+    <body onload="changePrincipal(1)">
+        <header id="top">
+                <div id="imageTop" >
+                    <a href="javascript:changePrincipal(1)"><img class="top" src="img/logo.png"/></a>
+                </div>
+                <div id="textTop">
+					<% if (foto !== 'null') { %>
+						<img width="50" height="50" src="uploads/<%= foto %>"/>
+					<%} %>
+                    <%= status %>
+                </div>	
+        </header>
+                <div id="midText">
+                    <div id="select">
+                        <button class="button" onclick="changePrincipal(0)">Desconectar</button>
+                        <button class="button" onclick="changePrincipal(2)">Unirse a partida</button>
+						<button class="button" onclick="changePrincipal(3)">Crear partida</button>						
+                    </div>
+
+                </div>
+
+				<div id="principal">
+				
+				</div>
+    </body>
+</html>

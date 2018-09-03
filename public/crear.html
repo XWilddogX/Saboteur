@@ -1,0 +1,28 @@
+﻿<!-- Genoves Inglada, Alvaro
+     Montero Cobo de Guzman, Sergio */-->
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/internal.css"/>
+		<title>
+			Saboteur
+		</title>
+	</head>
+    
+    <body id="unirse">
+		<div id="content">
+			<h1> Nueva partida <h1>
+			<p> Introduce los datos de la partida</p>
+			<form method="post" action="/crearPartida">
+				<table>
+					<tr><td>Nombre</td><td><input type="text" name="nombre"/></td></tr>
+					<tr><td>Numero máximo jugadores</td><td><input type="number" name="num" min="3" max="7"/></td></tr>
+					<tr><td></td><td><input type="submit" value="Crear partida"/></td></tr>
+				</table>
+			</form>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/internal.css"/>
+		<title>
+			Saboteur
+		</title>
+	</head>
+    
+    <body id="unirse">
+		<div id="content">
+			<h1> Unirse a partida <h1>
+			<p> A continuación se muestra una lista con las partidas abiertas que admiten
+			jugadores.</p>
+			<table>
+				<tr><th>Nombre</th><th>Fecha</th><th>Maximo de jugadores</th><th>Jugadores apuntados</th><th></th></tr>
+				<% for (i = 0; i < partida.length; i++) { 
+					var encontrado = false, repetido = false, z = 0, n = 0;
+					while (n < jugadores_part.length && !repetido) {
+						if (jugadores_part[n].ID_PARTIDA === partida[i].ID && jugadores_part[n].ID_JUGADOR === status) {
+							repetido = true;
+						}
+						n++;
+					}
+					if (!repetido) {encontrado = true;}
+					if (encontrado) { 
+						for(var num = 0; num < jugadores_part.length; num++){
+							if(jugadores_part[num].ID_PARTIDA === partida[i].ID) {
+								z++;
+							}
+						}
+						if (partida[i].ACTIVA && z < partida[i].MAX) {%>				
+							<tr><td><%=partida[i].NOMBRE %></td><td><%=partida[i].FECHA%></td><td><%=z%>/<%=partida[i].MAX%></td>
+							<td><%
+							for (var n = 0; n < jugadores_part.length; n++) {
+								if(jugadores_part[n].ID_PARTIDA === partida[i].ID) {%>
+									<%=jugadores_part[n].ID_JUGADOR%>
+								<%}
+							}%></td>
+							<td><a href="/unirsePartida?id_partida=<%=partida[i].ID%>&id_jug=<%=status%>&
+							max_jug=<%=partida[i].MAX%>">Unirse</a></td></tr>
+						<% } 
+					}
+				}%>
+			</table>
+		</div>
+    </body>
+</html>

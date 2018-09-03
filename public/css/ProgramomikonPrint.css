@@ -1,0 +1,47 @@
+/* Genoves Inglada, Alvaro
+   Montero Cobo de Guzman, Sergio */
+
+/* Reglas CSS para versión de impresión */
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+
+body{
+    font-family: 'Merriweather', serif;
+}
+
+#midText, #textTop{
+    display: none !important;
+}
+
+img.top{
+    width: 375px; height: 130px;
+}
+
+#leftText{	
+	padding:15px;
+	border: 2px solid;
+    border-radius: 25px;
+}
+
+h4{
+	font-size:18px;
+	font-weight: bold;
+}
+
+h3{
+	font-size:30px;
+	font-weight: bold;
+}
+
+#date{
+	font-style: oblique;
+	font-size:12px;
+	font-weight: normal;
+}
+
+#cursive{
+	font-style: oblique;
+}
+   
+   

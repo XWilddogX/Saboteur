@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/internal.css"media="screen"/>
+		<title>
+			Saboteur
+		</title>
+		<script src="js/internal.js"></script>
+	</head>
+    
+    <body>
+        <h1> Carta: </h1>
+		<div id="info">
+			<p><img width="50" height="50" src="img/<%=carta%>.png"/></p>
+		</div>
+		<div id="opciones">
+			<h2> Selecciona que es lo que quieres hacer </h2>
+			<table>
+				<form method="get" action="/putCard">
+					<table>
+						<tr><td>FILA</td><td><input type="number" name="fila" min="1" max="7" required/></td></tr>
+						<tr><td>COLUMNA</td><td><input type="number" name="columna" min="1" max="7" required/></td></tr>
+						<tr><td></td><td><input type="submit" value="Poner"/></td></tr>
+					</table>
+					<input type="hidden" name="id_carta" value="<%=id_carta%>" />
+					<input type="hidden" name="carta" value="<%=carta%>" />
+					<input type="hidden" name="id_partida" value="<%=id_partida%>" />
+					<input type="hidden" name="rol" value="<%=rol%>" />
+					<input type="hidden" name="id_jug" value="<%=id_jug%>" />
+					<input type="hidden" name="rest" value="<%=rest%>" />
+					<input type="hidden" name="pico" value="<%=pico%>" />
+				</form>
+			</table>
+			<a href="/descartaCarta?id_carta=<%=id_carta%>&id_jug=<%=id_jug%>&id_partida=<%=id_partida%>&rest=<%=rest%>"
+			>Descartar</a>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!-- Genoves Inglada, Alvaro
+     Montero Cobo de Guzman, Sergio */-->
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/Programomikon.css"media="screen"/>
+		<title>
+			Saboteur
+		</title>
+	</head>
+    
+    <body>
+        <header id="top">
+                <div id="imageTop">
+                    <a href="/"><img class="top" src="img/logo.png"/></a>
+                </div>
+                <div id="textTop">
+                    No hay usuario conectado
+                </div>	
+        </header>
+                <div id="midText">
+                    <div id="select">
+                            <button class="button" onclick="window.location.href='login.html'">Login</button>
+                            <button class="button" onclick="window.location.href='register.html'">Nuevo Usuario</button>  
+                    </div>
+
+                </div>
+
+				<div id="welcome">
+					<h1> Nuevo usuario </h1>
+					Introduce tus datos de minero. Los campos marcados con diamante rojo (*) son obligatorios:
+					
+					<form method="post" action="/registrar" enctype="multipart/form-data">
+						<table>
+							<tr><td>Nombre de usuario:* </td><td><input type="text" name="nick" required> </td>
+							<tr><td>Contraseña:*</td><td> <input type="password" name="pass" required> </td> </tr>
+							<td>Nombre completo:* </td><td> <input type="text" name="nombre" required></td></tr>
+							<td>Sexo:* </td><td> <input type="radio" name="sexo" value='0' required>Luke
+							<input type="radio" name="sexo" value='1' required> Leia</td></tr>
+							<td>Foto: </td><td> <input type="file" name="file" value="Examinar" ></td></tr>
+							<td>Fecha Nacimiento: </td><td> <input type="date" name="fecha"></td></tr>
+							</table>
+							<div id="Error"></div>
+							<p><input type="submit" value="Crear cuenta" /></p>
+						</form>
+				</div>
+    </body>
+</html>

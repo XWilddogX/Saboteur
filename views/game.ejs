@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/internal.css"media="screen"/>
+		<title>
+			Saboteur
+		</title>
+		<script src="js/internal.js"></script>
+	</head>
+    
+    <body>
+        <h1> Partida: <%= partida[0].NOMBRE %></h1>
+		<div id="info">
+			<p>Creada por: <%= partida[0].ID_CREADOR %></p>
+			<p>Jugadores: <% for (var i = 0; i < listajugadores.length; i++) {%> <%=listajugadores[i]%> <%}%></p>
+			<p>Turno de: <%=partida[0].TURNO%></p>
+			<p>Turnos restantes: <%= partida[0].TURNOS_RESTANTES %></p>
+		</div>
+		<div id="tablero">
+			<h2> TABLERO </h2>
+			<table>
+				<% for (f = 0; f < partida[0].FILAS; f++) { %>
+					<tr height ="40" width="40">
+					<% for (c = 0; c < partida[0].COLUMNAS; c++) {  
+						var puesta = false;
+						if ( f === 3 && c === 0) { %>
+							<td height ="40" width="40" class="vacio"><img width="40" height="40" src="img/Start.png"/></td> 
+						<%}
+						else if (partida[0].ACTIVA){
+							for (var z = 0; z < partida.length; z++) {
+								if(partida[z].FILA === f && partida[z].COLUMNA === c) {
+									puesta = true;
+									if (partida[z].ROL === 0 && partida[z].HIDDEN_SAB === 1) { %>
+										<td height ="40" width="40" class="vacio"><img width="40" height="40" src="img/DNK.png"/></td> 
+									<%} else if (partida[z].ROL === 1 && partida[z].HIDDEN_BUS === 1) {%>
+									<td height ="40" width="40" class="vacio"><img width="40" height="40" src="img/DNK.png"/></td> 
+									<%} else { %>
+									<td height ="40" width="40" class="vacio"><img width="40" height="40"
+									src="img/<%=partida[z].NOMBRE_CARTA%>.png"/>
+									<%}
+								 }
+							}
+							if(!puesta){%>
+								<td height ="40" width="40" class="vacio"></td> 
+						<%}}
+						else if (!partida[0].ACTIVA) {
+							for (var z = 0; z < partida.length; z++) {
+								if(partida[z].FILA === f && partida[z].COLUMNA === c) {
+									puesta = true%>				
+									<td height ="40" width="40" class="vacio"><img width="40" height="40"
+									src="img/<%=partida[z].NOMBRE_CARTA%>.png"/></td>
+								<% }
+							}
+							if (!puesta && ((f === 1 || f === 3 || f === 5) && c === 6)) {%>
+								<td height ="40" width="40" class="vacio"><img width="40" height="40" src="img/NoGold.png"/></td> 
+							<% }
+							else if (!puesta){%>
+							<td height ="40" width="40" class="vacio"></td> 
+							<% }
+						}} %>
+					</tr>
+				<% } %>
+			</table>
+		</div>
+		<div id="cartas">
+			<h2> Tus cartas</h2>
+				<tr>
+				<% for (c = 0; c < partida.length; c++) {
+					if (partida[c].USADA === 0) {%>
+						<% if(partida[c].TURNO === status && partida[c].ID_JUGADOR === status && partida[c].ACTIVA
+						&& partida[c].NOMBRE_CARTA !== "PicoArreglado" && partida[c].NOMBRE_CARTA !== "PicoRoto") { %>
+							<td><a href="/play?carta=<%=partida[c].NOMBRE_CARTA%>&idcarta=<%=partida[c].ID_CARTA%>
+							&id_partida=<%= partida[0].ID %>&rol_jugador=<%=partida[0].ROL%>&id_jug=<%=partida[0].TURNO%>
+							&rest=<%=partida[0].TURNOS_RESTANTES%>&pico=<%=partida[0].Herr_Rota%>">
+							<img width="50" height="50" src="img/<%=partida[c].NOMBRE_CARTA%>.png"/></a></td>
+						<%} else if (partida[c].TURNO === status && partida[c].ID_JUGADOR === status && partida[c].ACTIVA
+						&& partida[c].NOMBRE_CARTA === "PicoArreglado" || 
+						partida[c].NOMBRE_CARTA === "PicoRoto") { %>
+							<td><a href="/herr?carta=<%=partida[c].NOMBRE_CARTA%>&idcarta=<%=partida[c].ID_CARTA%>
+							&id_partida=<%= partida[0].ID %>&rol_jugador=<%=partida[0].ROL%>&id_jug=<%=partida[0].TURNO%>
+							&rest=<%=partida[0].TURNOS_RESTANTES%>">
+							<img width="50" height="50" src="img/<%=partida[c].NOMBRE_CARTA%>.png"/></a></td>
+						<%} else if (partida[c].ID_JUGADOR === status){ %>
+						<td><img width="50" height="50" src="img/<%=partida[c].NOMBRE_CARTA%>.png"/></td>
+						<%}%> 
+				<%}}%>
+				</tr>
+		</div>
+		<div id="comentarios">
+			<h2> Comentarios</h2>
+			<% for (var i = 0; i < comentarios.length; i++) { %>
+				<div id = "box-comentario">
+					<% if (comentarios[i].FOTO !== "null") { %>
+							<img width="50" height="50" src="uploads/<%= comentarios[i].FOTO %>"/>
+						<%} %>
+						<%= comentarios[i].ID_JUGADOR %>
+					<br><p><%=comentarios[i].FECHA%></p>
+					<p><%=comentarios[i].COMENTARIO%></p>
+				</div>
+			<%}%>
+			<div id ="box-new-comentario">
+				Introduce aquí tu comentario:
+				<form action="/comentario" method="post" id="formulario">
+					<textarea rows="4" cols="50" name="comentario" form="formulario"> </textarea>
+					<input type="hidden" name="id_partida" value="<%=partida[0].ID%>" />
+					<input type="hidden" name="id_jug" value="<%=status%>" />
+					<br><input type="submit" value="Enviar"/>
+				</form>
+			</div>
+		</div>
+    </body>
+</html>

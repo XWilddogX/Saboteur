@@ -1,0 +1,132 @@
+/* Reglas CSS para versión en pantalla */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Covered+By+Your+Grace');
+
+#midText{
+	/*background-color:#999999;*/
+	/*background-color: rgba(46, 44, 44, 0.7);*/
+	margin-top:18px;
+	background-position: center;
+	background-image: url("../img/Lightsaber_red.png");
+	background-repeat: no-repeat;
+}
+ 
+body{
+	font-family: 'Open Sans', sans-serif;
+	background:  url("../img/wallpaper.png");
+}
+
+
+h2{
+	font-size: 15pt;
+	color: #FFFFFF;
+}
+
+#top{
+	margin-button:0px;
+}
+
+#principal { 
+	top: 50%; 
+	left: 50%; 
+	margin: 30px 0 0 20px;
+	background-color: rgba(46, 44, 44, 0.7);
+	border-radius: 25px;
+    border: 1px solid /*#C0C0C0*/ #CC900;
+    padding: 15px; 
+    width: auto;
+    height: auto; 
+	color: white;
+	-webkit-box-shadow: -2px 10px 66px 20px rgba(0,0,0,0.35);
+	-moz-box-shadow: -2px 10px 66px 20px rgba(0,0,0,0.35);
+	box-shadow: -2px 10px 66px 20px rgba(0,0,0,0.35);
+}
+
+h3{
+padding-left:5px;
+font-size: 25pt;
+color:#31B404;
+}
+
+h4{
+font-size: 15pt;
+padding-left:15px;
+color:#31B404;
+}
+
+#textTop{
+	position: absolute;
+	right: 15px;
+	top: 70px;
+	font-style: oblique;
+	font-size: 20pt;
+	color: #FFFFFF;
+	font-family: calibri;
+}
+#date{
+	font-size:10px;
+	color:grey;
+}
+
+.button {
+	width: 180px;
+    border: 2px solid white;
+	background: rgba(255,0,0,0.35);
+	text-align:center;
+	font-size:20pt;
+	cursor:pointer;
+	transition-duration: 0.4s;
+	padding:5px;
+	margin-left:10px;
+	font-family: 'Covered By Your Grace', cursive;
+}
+
+input {
+    border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 3px;
+    background: rgba(255,255,255,0.5);
+}
+
+input[type="submit"] {
+    color: black;
+    padding: 3px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#select{
+	font-size:16pt;
+	color: #999999;
+	margin-left: 29%;
+}
+
+#text{
+	float:left;
+	padding:15px;
+	border:black;
+	width:70%;
+	background:  url("../img/fondo_articulo.png") repeat;
+	border:black solid 3px;
+}
+#leftText{
+	float: right;
+	border-color:black;
+	border-width:2px;
+	width:25%;
+	background:  url("../img/fondo_articulo.png") repeat;
+	border:black solid 3px;
+}

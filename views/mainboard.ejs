@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/internal.css"media="screen"/>
+		<title>
+			Saboteur
+		</title>
+		<script src="js/internal.js"></script>
+	</head>
+    
+    <body>
+        <h1> Bienvenido, <%= status %></h1>
+		<div id="partidasAbiertas">
+			<h2> Partidas abiertas</h2>
+			<p>Las siguientes partidas han sido creadas por ti, pero aún están a la espera de recibir
+			más jugadores</p>
+			<table>
+				<tr><th>Nombre</th><th>Fecha</th><th>Número de jugadores</th><th></th></tr>
+				<% for (i = 0; i < partida.length; i++) { 
+					if (partida[i].ID_CREADOR === status && partida[i].ACTIVA) {
+						var n = 0;
+						for(var z = 0; z < jugadores_part.length; z++){
+							if(jugadores_part[z].ID_PARTIDA === partida[i].ID) {
+								n++;
+							}
+						}
+					%>				
+				<tr><td><%=partida[i].NOMBRE %></td>
+				<td><%=partida[i].FECHA%></td><td><%=n%>/<%=partida[i].MAX%></td>
+				<td><a href="javascript:cerrarPartida(<%=partida[i].ID%>)">Cerrar partida</a></td></tr>
+				<% } 
+				} %>
+			</table>
+		</div>
+		<div id="partidasActivas">
+			<h2> Partidas activas</h2>
+			<p>Haz clic en el título de la partida para ver su estado actual</p>
+			<p>Se marcan resaltadas las partidas en las que es tu turno</p>
+			<table>
+				<tr><th>Nombre</th><th>Usuario Creador</th><th>Fecha</th><th>Turno</th></tr>
+				<% for (i = 0; i < jugadores_part.length; i++) { 
+					if (jugadores_part[i].ID_JUGADOR === status) { 
+					var encontrado = false, n = 0;
+					 while (n < partida.length && !encontrado) { 
+						if (jugadores_part[i].ID_PARTIDA === partida[n].ID)
+							encontrado = true;
+						else  { n++; }
+					} 
+					if (partida[n].ACTIVA) {
+						if (partida[n].TURNO === status) {%>
+							<tr class="turno">
+						<%} else {%>
+							<tr>
+						<%}%>
+						<td><a href="/entrarPartida?id=<%=partida[n].ID%>"><%=partida[n].NOMBRE %></a></td>
+						<td><%=partida[n].ID_CREADOR%></td><td><%=partida[n].FECHA%></td>
+						<td><%=partida[n].TURNO%></td></tr>
+					<% }} %>
+				<% } %>
+			</table>
+		</div>
+		<div id="partidasTerminadas">
+			<h2> Partidas terminadas</h2>
+			<table>
+				<tr><th>Nombre</th><th>Usuario Creador</th><th>Has ganado?</th></tr>
+				<% for (i = 0; i < partida.length; i++) { 
+				 if (!partida[i].ACTIVA) { 
+					var encontrado = false, n = 0;
+					while (n < partida.length && !encontrado) { 
+						if (jugadores_part[n].ID_PARTIDA === partida[i].ID)
+							encontrado = true;
+						else  { n++; }
+					} 
+					if (encontrado === true && jugadores_part[n].ID_JUGADOR === status) {
+						 if (partida[i].ID_GANADOR === jugadores_part[n].ROL) { %>
+							<tr><td><a href="/entrarPartida?id=<%=partida[i].ID%>"><%=partida[i].NOMBRE %></a></td>
+							<td><%=partida[i].ID_CREADOR%></td><td>Si</td></tr>
+						<% } else {%>
+							<tr><td><a href="/entrarPartida?id=<%=partida[i].ID%>"><%=partida[i].NOMBRE %></a></td>
+							<td><%=partida[i].ID_CREADOR%></td><td>No</td></tr>
+					<% } } }
+				 } %>
+			</table>
+		</div>
+    </body>
+</html>
